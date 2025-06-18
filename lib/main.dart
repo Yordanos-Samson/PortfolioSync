@@ -8,12 +8,11 @@ import 'services/github_service.dart';
 import 'blocs/github/github_event.dart';
 import 'blocs/theme/theme_event.dart';
 import 'blocs/theme/theme_state.dart';
+import 'ui/theme/app_theme.dart';
 
 void main() async {
-  // Ensure Flutter bindings are initialized for async operations
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Initialize PreferencesService before running the app
   final preferencesService = PreferencesService();
   await preferencesService.init();
 
@@ -44,9 +43,10 @@ class MyApp extends StatelessWidget {
         builder: (context, state) {
           return MaterialApp(
             title: 'PortfolioSync',
-            theme: state.isDarkMode ? ThemeData.dark() : ThemeData.light(),
+            theme: AppTheme.lightTheme,
+            darkTheme: AppTheme.darkTheme,
+            themeMode: state.isDarkMode ? ThemeMode.dark : ThemeMode.light,
             home: const HomeScreen(),
-            // Ensure responsiveness with debug banner off
             debugShowCheckedModeBanner: false,
           );
         },
