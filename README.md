@@ -1,16 +1,19 @@
-# portfolio_sync
+# PortfolioSync
+A Flutter app showcasing Yordanos Samson's developer portfolio, including projects, skills, and GitHub contributions. Built with BLoC state management and GitHub API integration.
 
-A new Flutter project.
+## Features
+- Displays projects like CareSync and Credential Verification App
+- Lists technical skills with icons
+- Fetches GitHub repositories in real-time
+- Supports light/dark theme with local storage
 
-## Getting Started
+## Setup
+1. Clone the repository: `git clone https://github.com/Yordanos-Samson/PortfolioSync.git`
+2. Install dependencies: `flutter pub get`
+3. Run the app: `flutter run`
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Tech Stack
+- Flutter, Dart
+- BLoC for state management
+- GitHub REST API
+- Shared Preferences
