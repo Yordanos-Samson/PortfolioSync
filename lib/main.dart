@@ -34,9 +34,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create:
-              (context) =>
-                  GithubBloc(GithubService())
-                    ..add(FetchGithubReposEvent('Yordanos-Samson')),
+              (context) => GithubBloc(GithubService())..add(
+                FetchGithubReposEvent('Yordanos-Samson'),
+              ), // Fixed username format
         ),
       ],
       child: BlocBuilder<ThemeBloc, ThemeState>(

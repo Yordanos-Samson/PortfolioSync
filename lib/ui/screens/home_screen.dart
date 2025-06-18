@@ -5,6 +5,7 @@ import '../../blocs/theme/theme_event.dart';
 import '../widgets/animated_nav_button.dart';
 import '../widgets/profile_header.dart';
 import '../widgets/glassmorphic_container.dart';
+import 'about_screen.dart';
 import 'projects_screen.dart';
 import 'skills_screen.dart';
 import 'github_screen.dart';
@@ -188,7 +189,25 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             child: Column(
                               children: [
                                 AnimatedNavButton(
-                                  title: 'View Projects',
+                                  title: 'About Me',
+                                  subtitle: 'Learn more about my background',
+                                  icon: Icons.person_rounded,
+                                  gradient: const LinearGradient(
+                                    colors: [
+                                      Color(0xFF059669),
+                                      Color(0xFF10B981),
+                                    ],
+                                  ),
+                                  onTap:
+                                      () => _navigateWithAnimation(
+                                        context,
+                                        const AboutScreen(),
+                                      ),
+                                  delay: 100,
+                                ),
+                                const SizedBox(height: 16),
+                                AnimatedNavButton(
+                                  title: 'Featured Projects',
                                   subtitle: 'Explore my latest work',
                                   icon: Icons.work_rounded,
                                   gradient: const LinearGradient(
@@ -220,7 +239,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                         context,
                                         const SkillsScreen(),
                                       ),
-                                  delay: 400,
+                                  delay: 300,
                                 ),
                                 const SizedBox(height: 16),
                                 AnimatedNavButton(
@@ -238,7 +257,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                         context,
                                         const GithubScreen(),
                                       ),
-                                  delay: 600,
+                                  delay: 400,
                                 ),
                               ],
                             ),

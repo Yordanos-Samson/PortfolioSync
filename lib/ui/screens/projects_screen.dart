@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../models/project.dart';
 import '../widgets/project_card.dart';
-import '../widgets/glassmorphic_container.dart';
 
 class ProjectsScreen extends StatefulWidget {
   const ProjectsScreen({super.key});
@@ -19,31 +18,46 @@ class _ProjectsScreenState extends State<ProjectsScreen>
     Project(
       title: 'CareSync Healthcare Platform',
       description:
-          'A comprehensive healthcare system with React-based web dashboard and Flutter mobile app, featuring real-time appointment scheduling, video consultations, and patient management.',
-      techStack: 'Flutter, React, Supabase, JavaScript, WebSocket, Node.js',
-      githubUrl: 'https://github.com/yordanos-samson/caresync',
+          'A comprehensive full-stack healthcare system featuring a React-based web dashboard and Flutter mobile app, powered by Supabase. Includes real-time appointment scheduling, video consultations, and role-based access for doctors, admins, and patients. Final year project focused on enhancing maternal healthcare access and coordination.',
+      techStack:
+          'Flutter, React, Supabase, PostgreSQL, JavaScript, Tailwind CSS, Realtime',
+      // Note: Private repository due to group collaboration
     ),
     Project(
       title: 'Credential Verification App',
       description:
-          'A Flutter app for scanning QR codes to verify credentials, developed during INSA internship with advanced security features.',
-      techStack: 'Flutter, PostgreSQL, Dart Frog, QR Scanner',
+          'A Flutter-based credential wallet app developed during INSA internship. Scans QR codes to verify verifiable credentials with secure data handling. Integrated PostgreSQL and Dart Frog for API backend, utilizing qr_code_scanner package and JSON parsing.',
+      techStack: 'Flutter, PostgreSQL, Dart Frog, QR Scanner, JSON',
       githubUrl:
-          'https://github.com/yordanos-samson/credential-verification-app',
+          'https://github.com/Yordanos-Samson/credential-verification-app',
     ),
     Project(
       title: 'Mood-based Music Recommender',
       description:
-          'An intelligent Android app that suggests music based on user mood using Google\'s Gemini API with machine learning capabilities.',
-      techStack: 'Flutter, Gemini API, Node.js, Machine Learning',
-      githubUrl: 'https://github.com/yordanos-samson/mood-music',
+          'An intelligent Android app that recommends music based on user mood using Google\'s Gemini API. Features mood detection, personalized recommendations, and smooth API integration for enhanced user experience.',
+      techStack: 'Flutter, Google Gemini API, Android',
+      githubUrl: 'https://github.com/Yordanos-Samson/mood-music-recommender',
     ),
     Project(
-      title: 'Chapa Payment Integration',
+      title: 'C++ Management Systems Collection',
       description:
-          'A comprehensive payment solution for Ethiopian businesses with Chapa payment gateway integration and transaction management.',
-      techStack: 'Flutter, Chapa API, Node.js, PostgreSQL',
-      githubUrl: 'https://github.com/yordanos-samson/chapa-flutter',
+          'A comprehensive collection of management systems built with C++ including Car Rental Management, ECB Bank Management, Employee Management, and Student Records Management systems. Demonstrates object-oriented programming principles and system design.',
+      techStack: 'C++, OOP, System Design, Data Structures',
+      githubUrl: 'https://github.com/Yordanos-Samson/cpp-management-systems',
+    ),
+    Project(
+      title: 'E-commerce Website',
+      description:
+          'A full-stack e-commerce platform built for practice using modern web technologies. Features product catalog, shopping cart, user authentication, and responsive design with clean UI/UX.',
+      techStack: 'React, Vite, Node.js, JavaScript, CSS',
+      githubUrl: 'https://github.com/Yordanos-Samson/ecommerce-website',
+    ),
+    Project(
+      title: 'Python Console Quiz App',
+      description:
+          'An interactive console-based quiz application developed to enhance Python programming skills. Features multiple question types, scoring system, and user-friendly interface.',
+      techStack: 'Python, Console Application, Data Handling',
+      githubUrl: 'https://github.com/Yordanos-Samson/python-quiz-app',
     ),
   ];
 
@@ -108,7 +122,7 @@ class _ProjectsScreenState extends State<ProjectsScreen>
                 backgroundColor: Colors.transparent,
                 flexibleSpace: FlexibleSpaceBar(
                   title: Text(
-                    'My Projects',
+                    'Featured Projects',
                     style: TextStyle(
                       color: theme.textTheme.headlineMedium?.color,
                       fontWeight: FontWeight.bold,

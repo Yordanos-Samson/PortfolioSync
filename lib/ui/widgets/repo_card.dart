@@ -3,7 +3,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../models/github_repo.dart';
 
 class RepoCard extends StatefulWidget {
-  final dynamic repo; // Using dynamic to match your existing GithubBloc
+  final dynamic repo; // Keep dynamic for backward compatibility
   final int delay;
 
   const RepoCard({super.key, required this.repo, this.delay = 0});
@@ -56,24 +56,35 @@ class _RepoCardState extends State<RepoCard> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    // Handle both GithubRepo model and raw JSON data
-    final name =
-        widget.repo is GithubRepo
-            ? (widget.repo as GithubRepo).name
-            : widget.repo['name'] ?? 'Unknown';
-    final description =
-        widget.repo is GithubRepo
-            ? (widget.repo as GithubRepo).description
-            : widget.repo['description'] ?? 'No description available';
-    final stars =
-        widget.repo is GithubRepo
-            ? (widget.repo as GithubRepo).stars
-            : widget.repo['stargazers_count'] ?? 0;
-    final url =
-        widget.repo is GithubRepo
-            ? (widget.repo as GithubRepo).url
-            : widget.repo['html_url'] ?? '';
-    final language = widget.repo['language'];
+    // Safely extract data from both GithubRepo model and raw JSON
+    String name;
+    String description;
+    int stars;
+    String url;
+    String? language;
+    List<String> topics;
+
+    if (widget.repo is GithubRepo) {
+      final repo = widget.repo as GithubRepo;
+      name = repo.name;
+      description = repo.description;
+      stars = repo.stars;
+      url = repo.url;
+      language = repo.language;
+      topics = repo.topics;
+    } else {
+      // Handle raw JSON data
+      final repoData = widget.repo as Map<String, dynamic>;
+      name = repoData['name'] ?? 'Unknown Repository';
+      description = repoData['description'] ?? 'No description available';
+      stars = repoData['stargazers_count'] ?? 0;
+      url = repoData['html_url'] ?? '';
+      language = repoData['language']; // Can be null
+      topics =
+          repoData['topics'] != null
+              ? List<String>.from(repoData['topics'])
+              : <String>[];
+    }
 
     return AnimatedBuilder(
       animation: _scaleAnimation,
@@ -180,7 +191,8 @@ class _RepoCardState extends State<RepoCard> with TickerProviderStateMixin {
                           const SizedBox(height: 16),
                           Row(
                             children: [
-                              if (language != null) ...[
+                              // Language badge (only show if language exists)
+                              if (language != null && language!.isNotEmpty) ...[
                                 Container(
                                   padding: const EdgeInsets.symmetric(
                                     horizontal: 8,
@@ -193,7 +205,7 @@ class _RepoCardState extends State<RepoCard> with TickerProviderStateMixin {
                                     borderRadius: BorderRadius.circular(12),
                                   ),
                                   child: Text(
-                                    language,
+                                    language!,
                                     style: TextStyle(
                                       color: theme.primaryColor,
                                       fontSize: 12,
@@ -201,8 +213,39 @@ class _RepoCardState extends State<RepoCard> with TickerProviderStateMixin {
                                     ),
                                   ),
                                 ),
-                                const Spacer(),
+                                const SizedBox(width: 8),
                               ],
+
+                              // Topics (show first 2)
+                              ...topics
+                                  .take(2)
+                                  .map(
+                                    (topic) => Container(
+                                      margin: const EdgeInsets.only(right: 6),
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 6,
+                                        vertical: 2,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey.withValues(
+                                          alpha: 0.1,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      child: Text(
+                                        topic,
+                                        style: TextStyle(
+                                          color:
+                                              theme.textTheme.bodySmall?.color,
+                                          fontSize: 10,
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                  .toList(),
+
+                              const Spacer(),
+
                               TextButton.icon(
                                 onPressed: () async {
                                   if (url.isNotEmpty) {

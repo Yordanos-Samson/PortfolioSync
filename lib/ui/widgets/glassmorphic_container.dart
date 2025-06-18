@@ -7,12 +7,12 @@ class GlassmorphicContainer extends StatelessWidget {
   final BorderRadius? borderRadius;
 
   const GlassmorphicContainer({
-    super.key,
+    Key? key,
     required this.child,
     this.blur = 10,
     this.opacity = 0.1,
     this.borderRadius,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,15 +20,15 @@ class GlassmorphicContainer extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: theme.cardColor.withValues(alpha: 0.7),
+        color: theme.cardColor.withOpacity(0.7),
         borderRadius: borderRadius ?? BorderRadius.circular(20),
         border: Border.all(
-          color: theme.primaryColor.withValues(alpha: 0.2),
+          color: theme.primaryColor.withOpacity(0.2),
           width: 1,
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.1),
+            color: Colors.black.withOpacity(0.1),
             blurRadius: 20,
             spreadRadius: 0,
             offset: const Offset(0, 10),

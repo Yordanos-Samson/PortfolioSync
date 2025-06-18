@@ -9,14 +9,14 @@ class AnimatedNavButton extends StatefulWidget {
   final int delay;
 
   const AnimatedNavButton({
-    super.key,
+    Key? key,
     required this.title,
     required this.subtitle,
     required this.icon,
     required this.gradient,
     required this.onTap,
     this.delay = 0,
-  });
+  }) : super(key: key);
 
   @override
   State<AnimatedNavButton> createState() => _AnimatedNavButtonState();
@@ -107,15 +107,15 @@ class _AnimatedNavButtonState extends State<AnimatedNavButton>
                           color:
                               _isHovered
                                   ? Colors.transparent
-                                  : theme.primaryColor.withValues(alpha: 0.2),
+                                  : theme.primaryColor.withOpacity(0.2),
                           width: 1,
                         ),
                         boxShadow: [
                           BoxShadow(
                             color:
                                 _isHovered
-                                    ? theme.primaryColor.withValues(alpha: 0.3)
-                                    : Colors.black.withValues(alpha: 0.05),
+                                    ? theme.primaryColor.withOpacity(0.3)
+                                    : Colors.black.withOpacity(0.05),
                             blurRadius: _isHovered ? 20 : 10,
                             spreadRadius: _isHovered ? 2 : 0,
                             offset: const Offset(0, 4),
@@ -129,10 +129,8 @@ class _AnimatedNavButtonState extends State<AnimatedNavButton>
                             decoration: BoxDecoration(
                               color:
                                   _isHovered
-                                      ? Colors.white.withValues(alpha: 0.2)
-                                      : theme.primaryColor.withValues(
-                                        alpha: 0.1,
-                                      ),
+                                      ? Colors.white.withOpacity(0.2)
+                                      : theme.primaryColor.withOpacity(0.1),
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: Icon(
@@ -167,9 +165,7 @@ class _AnimatedNavButtonState extends State<AnimatedNavButton>
                                     fontSize: 14,
                                     color:
                                         _isHovered
-                                            ? Colors.white.withValues(
-                                              alpha: 0.8,
-                                            )
+                                            ? Colors.white.withOpacity(0.8)
                                             : theme.textTheme.bodyMedium?.color,
                                   ),
                                 ),
@@ -181,7 +177,7 @@ class _AnimatedNavButtonState extends State<AnimatedNavButton>
                             color:
                                 _isHovered
                                     ? Colors.white
-                                    : theme.primaryColor.withValues(alpha: 0.7),
+                                    : theme.primaryColor.withOpacity(0.7),
                             size: 16,
                           ),
                         ],

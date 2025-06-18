@@ -14,95 +14,121 @@ class _SkillsScreenState extends State<SkillsScreen>
   late AnimationController _controller;
   late List<Animation<Offset>> _slideAnimations;
 
-  static final Map<String, List<Skill>> skillCategories = {
+  // Using a different approach with IconData and colors for better Flutter compatibility
+  static final Map<String, List<Map<String, dynamic>>> skillCategories = {
+    'Programming Languages': [
+      {'name': 'Dart', 'icon': Icons.code, 'color': const Color(0xFF0175C2)},
+      {'name': 'C++', 'icon': Icons.memory, 'color': const Color(0xFF00599C)},
+      {
+        'name': 'C#',
+        'icon': Icons.developer_mode,
+        'color': const Color(0xFF239120),
+      },
+      {
+        'name': 'Python',
+        'icon': Icons.psychology,
+        'color': const Color(0xFF3776AB),
+      },
+      {
+        'name': 'JavaScript',
+        'icon': Icons.javascript,
+        'color': const Color(0xFFF7DF1E),
+      },
+    ],
     'Mobile Development': [
-      Skill(
-        name: 'Flutter',
-        iconPath:
-            'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg',
-      ),
-      Skill(
-        name: 'Dart',
-        iconPath:
-            'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg',
-      ),
-      Skill(
-        name: 'Android',
-        iconPath:
-            'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/android/android-original.svg',
-      ),
+      {
+        'name': 'Flutter',
+        'icon': Icons.flutter_dash,
+        'color': const Color(0xFF02569B),
+      },
+      {
+        'name': 'Android Studio',
+        'icon': Icons.android,
+        'color': const Color(0xFF3DDC84),
+      },
     ],
-    'Frontend Development': [
-      Skill(
-        name: 'React',
-        iconPath:
-            'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
-      ),
-      Skill(
-        name: 'JavaScript',
-        iconPath:
-            'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg',
-      ),
-      Skill(
-        name: 'HTML5',
-        iconPath:
-            'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',
-      ),
-      Skill(
-        name: 'CSS3',
-        iconPath:
-            'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg',
-      ),
+    'Web Development': [
+      {'name': 'HTML5', 'icon': Icons.web, 'color': const Color(0xFFE34F26)},
+      {'name': 'CSS3', 'icon': Icons.style, 'color': const Color(0xFF1572B6)},
+      {
+        'name': 'React',
+        'icon': Icons.web_asset,
+        'color': const Color(0xFF61DAFB),
+      },
+      {'name': 'Vite', 'icon': Icons.bolt, 'color': const Color(0xFF646CFF)},
+      {'name': 'Node.js', 'icon': Icons.dns, 'color': const Color(0xFF339933)},
     ],
-    'Backend Development': [
-      Skill(
-        name: 'Node.js',
-        iconPath:
-            'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg',
-      ),
-      Skill(
-        name: 'Python',
-        iconPath:
-            'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
-      ),
-      Skill(
-        name: 'C++',
-        iconPath:
-            'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg',
-      ),
+    'Backend & Databases': [
+      {
+        'name': 'PostgreSQL',
+        'icon': Icons.storage,
+        'color': const Color(0xFF336791),
+      },
+      {
+        'name': 'Microsoft SQL Server',
+        'icon': Icons.storage_outlined,
+        'color': const Color(0xFFCC2927),
+      },
+      {
+        'name': 'Firebase',
+        'icon': Icons.local_fire_department,
+        'color': const Color(0xFFFFCA28),
+      },
+      {
+        'name': 'Supabase',
+        'icon': Icons.cloud_outlined,
+        'color': const Color(0xFF3ECF8E),
+      },
+      {
+        'name': 'Dart Frog',
+        'icon': Icons.api,
+        'color': const Color(0xFF02569B),
+      },
     ],
-    'Database & Cloud': [
-      Skill(
-        name: 'PostgreSQL',
-        iconPath:
-            'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg',
-      ),
-      Skill(
-        name: 'Supabase',
-        iconPath:
-            'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg',
-      ),
-      Skill(
-        name: 'Firebase',
-        iconPath:
-            'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg',
-      ),
+    'Tools & Technologies': [
+      {'name': 'Git', 'icon': Icons.source, 'color': const Color(0xFFF05032)},
+      {
+        'name': 'Linux',
+        'icon': Icons.computer,
+        'color': const Color(0xFFFCC624),
+      },
+      {
+        'name': 'REST APIs',
+        'icon': Icons.api_outlined,
+        'color': const Color(0xFF009688),
+      },
+      {
+        'name': 'JSON',
+        'icon': Icons.data_object,
+        'color': const Color(0xFF000000),
+      },
     ],
-    'Specialized Technologies': [
-      Skill(
-        name: 'WebSocket',
-        iconPath:
-            'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/socketio/socketio-original.svg',
-      ),
-      Skill(
-        name: 'Chapa Payment',
-        iconPath: 'https://images.chapa.co/brands/chapa-icon.svg',
-      ),
-      Skill(
-        name: 'REST API',
-        iconPath:
-            'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg',
-      ),
+    'Specialized Skills': [
+      {
+        'name': 'QR Code Scanning',
+        'icon': Icons.qr_code_scanner,
+        'color': const Color(0xFF4CAF50),
+      },
+      {
+        'name': 'Google Gemini API',
+        'icon': Icons.auto_awesome,
+        'color': const Color(0xFF4285F4),
+      },
+      {
+        'name': 'System Analysis',
+        'icon': Icons.analytics,
+        'color': const Color(0xFF9C27B0),
+      },
+      {
+        'name': 'Data Structures',
+        'icon': Icons.account_tree,
+        'color': const Color(0xFF795548),
+      },
+      {
+        'name': 'Algorithm Design',
+        'icon': Icons.psychology_alt,
+        'color': const Color(0xFFFF5722),
+      },
     ],
   };
 
@@ -221,7 +247,7 @@ class _SkillsScreenState extends State<SkillsScreen>
                                   itemCount: skills.length,
                                   itemBuilder: (context, skillIndex) {
                                     return _SkillTileWidget(
-                                      skill: skills[skillIndex],
+                                      skillData: skills[skillIndex],
                                       delay: skillIndex * 100,
                                     );
                                   },
@@ -244,10 +270,10 @@ class _SkillsScreenState extends State<SkillsScreen>
 }
 
 class _SkillTileWidget extends StatefulWidget {
-  final Skill skill;
+  final Map<String, dynamic> skillData;
   final int delay;
 
-  const _SkillTileWidget({required this.skill, this.delay = 0});
+  const _SkillTileWidget({required this.skillData, this.delay = 0});
 
   @override
   State<_SkillTileWidget> createState() => _SkillTileWidgetState();
@@ -297,6 +323,9 @@ class _SkillTileWidgetState extends State<_SkillTileWidget>
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final skillName = widget.skillData['name'] as String;
+    final skillIcon = widget.skillData['icon'] as IconData;
+    final skillColor = widget.skillData['color'] as Color;
 
     return AnimatedBuilder(
       animation: _scaleAnimation,
@@ -326,7 +355,7 @@ class _SkillTileWidgetState extends State<_SkillTileWidget>
                       border: Border.all(
                         color:
                             _isHovered
-                                ? theme.primaryColor
+                                ? skillColor
                                 : theme.primaryColor.withValues(alpha: 0.2),
                         width: _isHovered ? 2 : 1,
                       ),
@@ -334,7 +363,7 @@ class _SkillTileWidgetState extends State<_SkillTileWidget>
                         BoxShadow(
                           color:
                               _isHovered
-                                  ? theme.primaryColor.withValues(alpha: 0.3)
+                                  ? skillColor.withValues(alpha: 0.3)
                                   : Colors.black.withValues(alpha: 0.05),
                           blurRadius: _isHovered ? 15 : 5,
                           spreadRadius: _isHovered ? 2 : 0,
@@ -348,66 +377,31 @@ class _SkillTileWidgetState extends State<_SkillTileWidget>
                         Container(
                           width: 48,
                           height: 48,
-                          padding: const EdgeInsets.all(8),
                           decoration: BoxDecoration(
-                            color: theme.primaryColor.withValues(alpha: 0.1),
+                            color:
+                                _isHovered
+                                    ? skillColor.withValues(alpha: 0.2)
+                                    : skillColor.withValues(alpha: 0.1),
                             borderRadius: BorderRadius.circular(12),
                           ),
-                          child: Image.network(
-                            widget.skill.iconPath,
-                            width: 32,
-                            height: 32,
-                            fit: BoxFit.contain,
-                            loadingBuilder: (context, child, loadingProgress) {
-                              if (loadingProgress == null) return child;
-                              return Container(
-                                width: 32,
-                                height: 32,
-                                decoration: BoxDecoration(
-                                  color: theme.primaryColor.withValues(
-                                    alpha: 0.1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: const Center(
-                                  child: SizedBox(
-                                    width: 16,
-                                    height: 16,
-                                    child: CircularProgressIndicator(
-                                      strokeWidth: 2,
-                                    ),
-                                  ),
-                                ),
-                              );
-                            },
-                            errorBuilder: (context, error, stackTrace) {
-                              return Container(
-                                width: 32,
-                                height: 32,
-                                decoration: BoxDecoration(
-                                  color: theme.primaryColor.withValues(
-                                    alpha: 0.2,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: Icon(
-                                  Icons.code,
-                                  color: theme.primaryColor,
-                                  size: 20,
-                                ),
-                              );
-                            },
+                          child: Icon(
+                            skillIcon,
+                            color:
+                                _isHovered
+                                    ? skillColor
+                                    : skillColor.withValues(alpha: 0.8),
+                            size: 28,
                           ),
                         ),
                         const SizedBox(height: 12),
                         Text(
-                          widget.skill.name,
+                          skillName,
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
                             color:
                                 _isHovered
-                                    ? theme.primaryColor
+                                    ? skillColor
                                     : theme.textTheme.titleMedium?.color,
                           ),
                           textAlign: TextAlign.center,
